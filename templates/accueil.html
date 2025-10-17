@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>EM Paysages - Accueil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon-192.png') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='icon-192.png') }}" alt="Logo EM Paysages" class="logo">
+        <h1>Bienvenue chez EM Paysages</h1>
+        <p>Confort, esthétique, et nature maîtrisée 🌿</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Notre mission</h2>
+            <p>Nous accompagnons vos projets d’aménagement paysager avec expertise et passion.</p>
+        </section>
+
+        <section class="features">
+            <h2>Fonctionnalités de l'application</h2>
+            <ul>
+                <li>📋 Gestion des clients et interventions</li>
+                <li>📸 Suivi des chantiers avec photos</li>
+                <li>📊 Visualisation des devis et budgets</li>
+                <li>📅 Calendrier interactif</li>
+            </ul>
+        </section>
+
+        <section class="galerie-section">
+            <h2>Nos réalisations</h2>
+            <div class="galerie">
+                <img src="{{ url_for('static', filename='chantier1.jpg') }}" alt="Chantier 1">
+                <img src="{{ url_for('static', filename='chantier2.jpg') }}" alt="Chantier 2">
+                <img src="{{ url_for('static', filename='chantier3.jpg') }}" alt="Chantier 3">
+            </div>
+        </section>
+
+        <section class="planning">
+            <h2>Planning</h2>
+            <p>Consultez votre calendrier d’interventions :</p>
+            <a href="/calendrier" class="btn">Voir le calendrier</a>
+        </section>
+
+        <section class="navigation">
+            <h2>Accès rapide</h2>
+            <p><a href="/">Tableau de bord</a> | <a href="/clients">Liste des clients</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EM Paysages. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

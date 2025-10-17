@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Calendrier des interventions</title>
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; padding: 20px; }
-    h1 { color: #4CAF50; }
-    #calendar { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  </style>
+    <meta charset="UTF-8">
+    <title>Planning des interventions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Ton CSS personnalisé -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- FullCalendar CSS (version classique) -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
 </head>
 <body>
-  {% include 'menu.html' %}
-  <main>
-    <h1>Calendrier</h1>
-    ...
-  </main>
-</body>  <div id="calendar"></div>
+    <header>
+        <h1>Planning des interventions</h1>
+        <p>Visualisez les dates prévues pour vos chantiers</p>
+    </header>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'fr',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: {{ events|safe }},
-        eventClick: function(info) {
-          const clientId = info.event.extendedProps.client_id;
-          if (clientId) {
-            window.location.href = `/client/${clientId}`;
-          }
-        }
-      });
-      calendar.render();
-    });
-  </script>
+    <main>
+        <div id="calendar"></div>
+
+        <section class="navigation">
+            <a href="/accueil" class="btn">Retour à l’accueil</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EM Paysages</p>
+    </footer>
+
+    <!-- 📋 Modale événement -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Titre</h2>
+            <p><strong>Date :</strong> <span id="modalDate"></span></p>
+            <p><strong>Description :</strong> <span id="modalDescription"></span></p>
+        </div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/fr.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'fr',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: '/api/events',
+                eventClick: function(info) {
+                    document.getElementById('modalTitle').textContent = info.event.title;
+                    document.getElementById('modalDate').textContent = info.event.start.toLocaleDateString();
+                    document.getElementById('modalDescription').textContent = info.event.extendedProps.description;
+                    document.getElementById('eventModal').style.display = 'block';
+                }
+            });
+            calendar.render();
+
+            // Fermer la modale
+            document.querySelector('.close').onclick = function () {
+                document.getElementById('eventModal').style.display = 'none';
+            };
+
+            // Fermer en cliquant en dehors
+            window.onclick = function (event) {
+                const modal = document.getElementById('eventModal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        });
+    </script>
 </body>
 </html>

@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>{% block title %}EM Paysages APP{% endblock %}</title>
-
-  <!-- 📲 PWA installable -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#2e7d32">
-  <link rel="manifest" href="/static/manifest.json">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/static/service-worker.js')
-        .then(() => console.log("✅ Service worker actif"))
-        .catch(err => console.error("Erreur SW:", err));
-    }
-  </script>
-
-  <!-- Ton CSS global -->
-  <link rel="stylesheet" href="/static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EM Paysages</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon-192.png') }}">
 </head>
 <body>
-  {% include 'menu.html' %}
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+    <header>
+        <img src="{{ url_for('static', filename='icon-192.png') }}" alt="Logo EM Paysages" class="logo">
+        <h1>EM Paysages</h1>
+        <p>Confort, esthétique, et nature maîtrisée 🌿</p>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Bienvenue sur notre application</h2>
+            <p>Suivez vos projets d’aménagement paysager, gérez vos devis, et visualisez vos chantiers en toute simplicité.</p>
+        </section>
+
+        <section class="features">
+            <h3>Fonctionnalités</h3>
+            <ul>
+                <li>📅 Calendrier interactif</li>
+                <li>📸 Intégration de photos de chantier</li>
+                <li>📊 Suivi des budgets et phases</li>
+                <li>🧾 Génération de documents PDF</li>
+            </ul>
+        </section>
+
+        <section class="contact">
+            <h3>Contact</h3>
+            <p>Pour toute demande, contactez-nous à <a href="mailto:contact@em-paysages.fr">contact@em-paysages.fr</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 EM Paysages. Tous droits réservés.</p>
+    </footer>
 </body>
 </html>
