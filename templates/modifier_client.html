@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier client</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; padding: 20px; }
+    h1 { color: #4CAF50; }
+    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  {% include 'menu.html' %}
+  <main>
+    <h1>Modifier client</h1>
+    ...
+  </main>
+</body>  <form method="POST">
+    <label>Nom :</label>
+    <input type="text" name="nom" value="{{ client.nom }}" required>
+
+    <label>Adresse :</label>
+    <input type="text" name="adresse" value="{{ client.adresse }}">
+
+    <label>Téléphone :</label>
+    <input type="text" name="telephone" value="{{ client.telephone }}">
+
+    <label>Email :</label>
+    <input type="email" name="email" value="{{ client.email }}">
+
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+
+  <a href="/clients" class="btn">Retour à la liste des clients</a>
+</body>
+</html>

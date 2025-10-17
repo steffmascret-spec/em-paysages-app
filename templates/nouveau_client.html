@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Ajouter un client{% endblock %}
+
+{% block content %}
+  <h1>👤 Nouveau client</h1>
+  <form method="POST">
+    <label>Nom :</label>
+    <input type="text" name="nom" required>
+    <label>Adresse :</label>
+    <input type="text" name="adresse" required>
+    <label>Téléphone :</label>
+    <input type="text" name="telephone" required>
+    <label>Email :</label>
+    <input type="email" name="email" required>
+    <button type="submit">Ajouter</button>
+  </form>
+{% endblock %}

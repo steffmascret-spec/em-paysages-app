@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Créer un devis</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; padding: 20px; }
+    h1 { color: #4CAF50; }
+    form { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    label { display: block; margin-top: 10px; }
+    input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  {% include 'menu.html' %}
+  <main>
+    <h1>Créer un devis</h1>
+    ...
+  </main>
+</body>  <form method="POST">
+    <label>Description de la prestation :</label>
+    <textarea name="description" rows="3" required></textarea>
+
+    <label>Montant (€) :</label>
+    <input type="number" name="montant" required>
+
+    <label>Statut :</label>
+    <select name="statut">
+      <option value="En attente">En attente</option>
+      <option value="Accepté">Accepté</option>
+      <option value="Refusé">Refusé</option>
+    </select>
+
+    <button type="submit">Enregistrer le devis</button>
+  </form>
+
+  <a href="/clients" class="btn">Retour à la liste des clients</a>
+</body>
+</html>

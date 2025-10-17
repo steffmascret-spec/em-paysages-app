@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Nouvelle intervention{% endblock %}
+
+{% block content %}
+  <h1>📅 Planifier une intervention</h1>
+  <form method="POST">
+    <p><strong>Client :</strong> {{ client.nom }}</p>
+    <label>Date :</label>
+    <input type="date" name="date" required>
+    <label>Description :</label>
+    <textarea name="description" rows="4" required></textarea>
+    <button type="submit">Enregistrer</button>
+  </form>
+{% endblock %}

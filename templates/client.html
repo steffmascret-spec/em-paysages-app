@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Fiche client{% endblock %}
+
+{% block content %}
+  <h1>👤 Fiche client</h1>
+
+  <div class="fiche-client">
+    <h2>{{ client.nom }}</h2>
+    <p>📍 <a href="https://www.google.com/maps/search/{{ client.adresse | urlencode }}" target="_blank">{{ client.adresse }}</a></p>
+    <p>📞 <a href="tel:{{ client.telephone }}">{{ client.telephone }}</a></p>
+    <p>✉️ <a href="mailto:{{ client.email }}">{{ client.email }}</a></p>
+
+    <div class="btn-group">
+      <a href="https://www.google.com/maps/dir/?api=1&destination={{ client.adresse | urlencode }}" target="_blank" class="btn">🧭 Itinéraire</a>
+      <a href="/modifier-client/{{ client.id }}" class="btn">✏️ Modifier</a>
+      <a href="/supprimer-client/{{ client.id }}" class="btn">🗑️ Supprimer</a>
+      <a href="/creer-devis/{{ client.id }}" class="btn">📄 Créer devis</a>
+      <a href="/ajouter-intervention/{{ client.id }}" class="btn">📅 Planifier intervention</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>📄 Devis</h2>
+    <table>
+      <tr><th>Description</th><th>Montant</th><th>Statut</th></tr>
+      {% for d in client.devis %}
+      <tr>
+        <td>{{ d.description }}</td>
+        <td>{{ d.montant }} €</td>
+        <td>{{ d.statut }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+{% endblock %}

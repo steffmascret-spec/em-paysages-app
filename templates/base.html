@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}EM Paysages APP{% endblock %}</title>
+
+  <!-- 📲 PWA installable -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2e7d32">
+  <link rel="manifest" href="/static/manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/service-worker.js')
+        .then(() => console.log("✅ Service worker actif"))
+        .catch(err => console.error("Erreur SW:", err));
+    }
+  </script>
+
+  <!-- Ton CSS global -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  {% include 'menu.html' %}
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

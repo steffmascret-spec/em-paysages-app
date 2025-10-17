@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des interventions</title>
+</head>
+<body>
+  {% include 'menu.html' %}
+  <main>
+    <h1>📁 Liste des interventions</h1>
+
+    <table style="width:100%; border-collapse:collapse; background:white; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+      <tr style="background:#4CAF50; color:white;">
+        <th style="padding:10px;">Date</th>
+        <th style="padding:10px;">Heure</th>
+        <th style="padding:10px;">Client</th>
+        <th style="padding:10px;">Prestation</th>
+        <th style="padding:10px;">Lieu</th>
+      </tr>
+      {% for i in interventions %}
+      <tr>
+        <td style="padding:10px;">{{ i.date }}</td>
+        <td style="padding:10px;">{{ i.heure }}</td>
+        <td style="padding:10px;">{{ i.client }}</td>
+        <td style="padding:10px;">{{ i.prestation }}</td>
+        <td style="padding:10px;">{{ i.lieu }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <div style="margin-top:30px;">
+      <a href="/nouvelle-intervention" class="btn">➕ Nouvelle intervention</a>
+      <a href="/" class="btn">🏠 Retour au tableau de bord</a>
+    </div>
+  </main>
+</body>
+</html>
